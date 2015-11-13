@@ -70,7 +70,7 @@ function init()
 	scene.add(skyBox);
 	// PBR SPAWN PLANE
 	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
-	var spawnPlaneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide , transparent: true, opacity: 1.0 } );
+	var spawnPlaneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide , transparent: true, opacity: 0.0 } );
 	spawnPlane = new THREE.Mesh( spawnPlaneGeometry, spawnPlaneMaterial );
 	spawnPlane.position.set(0,0,400);
 	scene.add(spawnPlane);
@@ -123,7 +123,7 @@ function onDocumentMouseDown( event ) {
 
 	if ( intersects.length > 0 ) {
 
-		console.log("Hit @ " + toString( intersects[0].position ) );
+		console.log(intersects);
 	}
 }
 
