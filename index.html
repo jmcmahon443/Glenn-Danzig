@@ -23,7 +23,7 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, stats, projector, mouse, raycaster;
+var container, scene, camera, renderer, stats, projector;
 var keyboard = new KeyboardState();
 var clock = new THREE.Clock();
 
@@ -83,7 +83,7 @@ function init()
 	var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
 	scene.add(skyBox);
 	// PROJECTOR
-	var projector = new THREE.Projector();
+	projector = new THREE.Projector();
 	
 	////////////
 	// CUSTOM //
