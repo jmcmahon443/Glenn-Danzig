@@ -22,8 +22,9 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, stats, projector, glenn, raycaster, mouse, PBR, skyBox;
+var container, scene, camera, renderer, stats, projector, glenn, raycaster, mouse, spawnPlane;
 var clock = new THREE.Clock();
+var PBRs = [];
 
 init();
 animate();
@@ -69,12 +70,12 @@ function init()
 	// SKYBOX
 	var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
 	var skyBoxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
-	skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
+	var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
 	scene.add(skyBox);
 	// PBR SPAWN PLANE
-	//var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
-	//spawnPlane = new THREE.MeshBasicMaterial(spawnPlaneGeometry);
-	//scene.add(spawnPlane);
+	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
+	spawnPlane = new THREE.MeshBasicMaterial(spawnPlaneGeometry);
+	scene.add(spawnPlane);
 	// PBR SPAWN STUFF
 	projector = new THREE.Projector();
 	raycaster = new THREE.Raycaster();
@@ -86,7 +87,7 @@ function init()
 	
 	var PBRGeometry = new THREE.SphereGeometry( 30, 32, 16 );
 	var PBRMaterial = new THREE.MeshLambertMaterial( { color: 0x000088 } );
-	PBR = new THREE.Mesh( PBRGeometry, PBRMaterial );
+	var PBR = new THREE.Mesh( PBRGeometry, PBRMaterial );
 
 	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
@@ -118,11 +119,11 @@ function onDocumentMouseDown( event ) {
 
 	raycaster.setFromCamera( mouse, camera );
 
-	var intersects = raycaster.intersectObjects( [glenn] ); //spawnPlane later
+	var intersects = raycaster.intersectObjects( [spawnPlane] );
 
 	if ( intersects.length > 0 ) {
 
-		console.log("Hit @ " + toString( intersects[0].point ) );
+		console.log("Hit @ " + toString( intersects[0].point.position ) );
 	}
 }
 
