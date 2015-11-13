@@ -132,7 +132,7 @@ function onDocumentMouseDown( event ) {
     projector.unprojectVector( vector, camera );
 
     var ray = new THREE.Ray( camera.position, 
-                             vector.subSelf( camera.position ).normalize() );
+                             vector.sub( camera.position ).normalize() );
 
     var intersects = ray.intersectObjects( spawnPlane );
 
