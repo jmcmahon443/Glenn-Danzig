@@ -25,7 +25,7 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, stats, projector, glenn, raycaster, mouse, PBR;
+var container, scene, camera, renderer, stats, projector, glenn, raycaster, mouse;
 var keyboard = new KeyboardState();
 var clock = new THREE.Clock();
 
@@ -134,7 +134,7 @@ function onDocumentMouseDown( event ) {
 
 	raycaster.setFromCamera( mouse, camera );
 
-	var intersects = raycaster.intersectObjects( [glenn] ); //spawnPlane
+	var intersects = raycaster.intersectObjects( [glenn] ); //spawnPlane later
 
 	if ( intersects.length > 0 ) {
 
