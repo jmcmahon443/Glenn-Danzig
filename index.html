@@ -111,6 +111,8 @@ function update()
 	if ( keyboard.pressed("z") ) 
 	{	  
 		scene.add(PBR);
+
+		console.log("PBR!");
 	}
 
 	stats.update();
@@ -132,7 +134,7 @@ function onDocumentMouseDown( event ) {
 
 	raycaster.setFromCamera( mouse, camera );
 
-	var intersects = raycaster.intersectObjects( spawnPlane );
+	var intersects = raycaster.intersectObjects( glenn ); //spawnPlane
 
 	if ( intersects.length > 0 ) {
 
