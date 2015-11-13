@@ -23,7 +23,7 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, stats, projector, spawnPlane;
+var container, scene, camera, renderer, stats, projector, spawnPlane, rayCaster, mouse;
 var keyboard = new KeyboardState();
 var clock = new THREE.Clock();
 
@@ -73,17 +73,19 @@ function init()
 	var glenn = new THREE.Mesh(glennGeometry, glennMaterial);
 	glenn.position.set(0,0,-500);
 	scene.add(glenn);
-	// PBR SPAWN PLANE
-	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
-	spawnPlane = new THREE.MeshBasicMaterial(spawnPlaneGeometry);
-	scene.add(spawnPlane);
 	// SKYBOX
 	var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
 	var skyBoxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
 	var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
 	scene.add(skyBox);
-	// PROJECTOR
+	// PBR SPAWN PLANE
+	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
+	spawnPlane = new THREE.MeshBasicMaterial(spawnPlaneGeometry);
+	scene.add(spawnPlane);
+	// PBR SPAWN STUFF
 	projector = new THREE.Projector();
+	raycaster = new THREE.Raycaster();
+	mouse = new THREE.Vector2();
 	
 	////////////
 	// CUSTOM //
@@ -119,33 +121,27 @@ function render()
 
 document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
-
 function onDocumentMouseDown( event ) {
 
-    event.preventDefault();
+	event.preventDefault();
 
-    var vector = new THREE.Vector3(
-        ( event.clientX / window.innerWidth ) * 2 - 1,
-      - ( event.clientY / window.innerHeight ) * 2 + 1,
-        0.5
-    );
-    projector.unprojectVector( vector, camera );
+	mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
 
-    var ray = new THREE.Ray( camera.position, 
-                             vector.sub( camera.position ).normalize() );
+	raycaster.setFromCamera( mouse, camera );
 
-    var intersects = ray.intersectObjects( spawnPlane );
+	var intersects = raycaster.intersectObjects( spawnPlane );
 
-    if ( intersects.length > 0 ) {
+	if ( intersects.length > 0 ) {
 
-        intersects[ 0 ].object.materials[ 0 ].color.setHex( Math.random() * 0xffffff );
+		intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
 
-        var particle = new THREE.Particle( particleMaterial );
-        particle.position = intersects[ 0 ].point;
-        particle.scale.x = particle.scale.y = 8;
-        scene.add( particle );
+		var particle = new THREE.Sprite( particleMaterial );
+		particle.position.copy( intersects[ 0 ].point );
+		particle.scale.x = particle.scale.y = 16;
+		scene.add( particle );
 
-    }
+	}
 
 }
 
