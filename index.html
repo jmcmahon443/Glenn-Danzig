@@ -23,7 +23,7 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, stats, projector;
+var container, scene, camera, renderer, stats, projector, mouse, raycaster;
 var keyboard = new KeyboardState();
 var clock = new THREE.Clock();
 
@@ -134,7 +134,7 @@ function onDocumentMouseDown( event ) {
     var ray = new THREE.Ray( camera.position, 
                              vector.subSelf( camera.position ).normalize() );
 
-    var intersects = ray.intersectObjects( objects );
+    var intersects = ray.intersectObjects( spawnPlane );
 
     if ( intersects.length > 0 ) {
 
