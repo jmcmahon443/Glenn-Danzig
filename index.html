@@ -39,7 +39,7 @@ function init()
 	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
 	scene.add(camera);
-	camera.position.set(0,150,400);
+	camera.position.set(0,0,500);
 	camera.lookAt(scene.position);	
 	// RENDERER
 	if ( Detector.webgl )
@@ -56,17 +56,12 @@ function init()
 	stats.domElement.style.bottom = '0px';
 	stats.domElement.style.zIndex = 100;
 	container.appendChild( stats.domElement );
-	// LIGHT
-	var light = new THREE.PointLight(0xffffff);
-	light.position.set(100,250,100);
-	scene.add(light);
 	// GLENN
-	// why isnt it updating??
 	var glennTexture = new THREE.ImageUtils.loadTexture( 'images/glenn.jpg' );
 	var glennMaterial = new THREE.MeshBasicMaterial( { map: glennTexture, side: THREE.DoubleSide } );
 	var glennGeometry = new THREE.PlaneGeometry(100, 100, 10, 10);
 	glenn = new THREE.Mesh( glennGeometry, glennMaterial );
-	glenn.position.set(0,0,-500);
+	glenn.position.set(0,0,0);
 	scene.add(glenn);
 	// SKYBOX
 	var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
@@ -75,9 +70,9 @@ function init()
 	scene.add(skyBox);
 	// PBR SPAWN PLANE
 	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
-	var spawnPlaneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } );
+	var spawnPlaneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide , transparent: true, opacity: 0.5 } );
 	spawnPlane = new THREE.Mesh( spawnPlaneGeometry, spawnPlaneMaterial );
-	spawnPlane.position.set(0,0,-500);
+	spawnPlane.position.set(0,0,400);
 	scene.add(spawnPlane);
 	// PBR SPAWN STUFF
 	projector = new THREE.Projector();
