@@ -77,6 +77,7 @@ function init()
 	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
 	var spawnPlaneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.BackSide } );
 	spawnPlane = new THREE.Mesh( spawnPlaneGeometry, spawnPlaneMaterial );
+	spawnPlane.position.set(0,0,-500);
 	scene.add(spawnPlane);
 	// PBR SPAWN STUFF
 	projector = new THREE.Projector();
