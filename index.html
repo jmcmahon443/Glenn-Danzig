@@ -75,7 +75,7 @@ function init()
 	scene.add(skyBox);
 	// PBR SPAWN PLANE
 	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
-	var spawnPlaneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.BackSide } );
+	var spawnPlaneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } );
 	spawnPlane = new THREE.Mesh( spawnPlaneGeometry, spawnPlaneMaterial );
 	spawnPlane.position.set(0,0,-500);
 	scene.add(spawnPlane);
