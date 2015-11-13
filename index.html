@@ -23,7 +23,7 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, controls, stats;
+var container, scene, camera, renderer, stats, projector;
 var keyboard = new KeyboardState();
 var clock = new THREE.Clock();
 
@@ -45,9 +45,6 @@ function init()
 	scene.add(camera);
 	camera.position.set(0,150,400);
 	camera.lookAt(scene.position);	
-	// PROJECTOR
-	var projector = new THREE.Projector();
-	scene.add(projector);
 	// RENDERER
 	if ( Detector.webgl )
 		renderer = new THREE.WebGLRenderer( {antialias:true} );
@@ -76,11 +73,17 @@ function init()
 	var glenn = new THREE.Mesh(glennGeometry, glennMaterial);
 	glenn.position.set(0,0,-500);
 	scene.add(glenn);
+	// PBR SPAWN PLANE
+	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
+	var spawnPlane = new THREE.MeshBasicMaterial(spawnPlaneGeometry);
+	scene.add(spawnPlane);
 	// SKYBOX
 	var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
 	var skyBoxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
 	var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
 	scene.add(skyBox);
+	// PROJECTOR
+	var projector = new THREE.Projector();
 	
 	////////////
 	// CUSTOM //
