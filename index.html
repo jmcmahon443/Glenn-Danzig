@@ -12,14 +12,12 @@
 <script src="js/Three.js"></script>
 <script src="js/Detector.js"></script>
 <script src="js/Stats.js"></script>
-<script src="js/OrbitControls.js"></script>
 <script src="js/KeyboardState.js"></script>
 <script src="js/THREEx.FullScreen.js"></script>
 <script src="js/THREEx.WindowResize.js"></script>
 
-</div>
-
 <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+
 <script>
 
 // MAIN
@@ -58,8 +56,6 @@ function init()
 	// EVENTS
 	THREEx.WindowResize(renderer, camera);
 	THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
-	// CONTROLS
-	controls = new THREE.OrbitControls( camera, renderer.domElement );
 	// STATS
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
@@ -87,18 +83,16 @@ function init()
 	// CUSTOM //
 	////////////
 	
-	var geometry = new THREE.SphereGeometry( 30, 32, 16 );
-	var material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
-	mesh = new THREE.Mesh( geometry, material );
-	mesh.position.set(0,40,0);
-	scene.add(mesh);
+	var PBRGeometry = new THREE.SphereGeometry( 30, 32, 16 );
+	var PBRMaterial = new THREE.MeshLambertMaterial( { color: 0x000088 } );
+	PBR = new THREE.Mesh( PBRGometry, PBRMaterial );
 	
 }
 
 function animate() 
 {
     requestAnimationFrame( animate );
-	render();		
+	render();
 	update();
 }
 
@@ -106,16 +100,48 @@ function update()
 {
 	if ( keyboard.pressed("z") ) 
 	{	  
-		// do something
+		scene.add(PBR);
 	}
-	
-	controls.update();
+
 	stats.update();
 }
 
 function render() 
 {
 	renderer.render( scene, camera );
+}
+
+document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
+var projector = new THREE.Projector();
+
+function onDocumentMouseDown( event ) {
+
+    event.preventDefault();
+
+    var vector = new THREE.Vector3(
+        ( event.clientX / window.innerWidth ) * 2 - 1,
+      - ( event.clientY / window.innerHeight ) * 2 + 1,
+        0.5
+    );
+    projector.unprojectVector( vector, camera );
+
+    var ray = new THREE.Ray( camera.position, 
+                             vector.subSelf( camera.position ).normalize() );
+
+    var intersects = ray.intersectObjects( objects );
+
+    if ( intersects.length > 0 ) {
+
+        intersects[ 0 ].object.materials[ 0 ].color.setHex( Math.random() * 0xffffff );
+
+        var particle = new THREE.Particle( particleMaterial );
+        particle.position = intersects[ 0 ].point;
+        particle.scale.x = particle.scale.y = 8;
+        scene.add( particle );
+
+    }
+
 }
 
 </script>
