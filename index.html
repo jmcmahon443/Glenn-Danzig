@@ -64,7 +64,7 @@ function init()
 	var glennTexture = new THREE.ImageUtils.loadTexture( 'images/glenn.jpg' );
 	var glennMaterial = new THREE.MeshBasicMaterial( { map: glennTexture, side: THREE.DoubleSide } );
 	var glennGeometry = new THREE.PlaneGeometry(100, 100, 10, 10);
-	glenn = new THREE.Mesh(glennGeometry, glennMaterial);
+	glenn = new THREE.Mesh( glennGeometry, glennMaterial );
 	glenn.position.set(0,0,-500);
 	scene.add(glenn);
 	// SKYBOX
@@ -75,7 +75,7 @@ function init()
 	// PBR SPAWN PLANE
 	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
 	var spawnPlaneMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.BackSide } );
-	spawnPlane = new THREE.MeshBasicMaterial(spawnPlaneGeometry);
+	spawnPlane = new THREE.MeshBasicMaterial(spawnPlaneGeometry, spawnPlaneMaterial);
 	scene.add(spawnPlane);
 	// PBR SPAWN STUFF
 	projector = new THREE.Projector();
