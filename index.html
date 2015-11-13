@@ -45,6 +45,7 @@ function init()
 	scene.add(camera);
 	camera.position.set(0,150,400);
 	camera.lookAt(scene.position);	
+	var projector = new THREE.Projector();
 	// RENDERER
 	if ( Detector.webgl )
 		renderer = new THREE.WebGLRenderer( {antialias:true} );
@@ -113,7 +114,6 @@ function render()
 
 document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
-var projector = new THREE.Projector();
 
 function onDocumentMouseDown( event ) {
 
