@@ -45,7 +45,9 @@ function init()
 	scene.add(camera);
 	camera.position.set(0,150,400);
 	camera.lookAt(scene.position);	
+	// PROJECTOR
 	var projector = new THREE.Projector();
+	scene.add(projector);
 	// RENDERER
 	if ( Detector.webgl )
 		renderer = new THREE.WebGLRenderer( {antialias:true} );
