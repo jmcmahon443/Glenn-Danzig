@@ -96,7 +96,10 @@ function init()
 	var PBRGeometry = new THREE.SphereGeometry( 30, 32, 16 );
 	var PBRMaterial = new THREE.MeshLambertMaterial( { color: 0x000088 } );
 	PBR = new THREE.Mesh( PBRGeometry, PBRMaterial );
-	
+
+	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+	window.addEventListener( 'resize', onWindowResize, false );
 }
 
 function animate() 
@@ -123,10 +126,7 @@ function render()
 	renderer.render( scene, camera );
 }
 
-document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-
 function onDocumentMouseDown( event ) {
-
 	event.preventDefault();
 
 	mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
@@ -139,10 +139,23 @@ function onDocumentMouseDown( event ) {
 	if ( intersects.length > 0 ) {
 
 		console.log("Hit @ " + toString( intersects[0].point ) );
-
 	}
-
 }
+
+function onWindowResize() {
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+function onDocumentTouchStart( event ) {
+	event.preventDefault();
+	
+	event.clientX = event.touches[0].clientX;
+	event.clientY = event.touches[0].clientY;
+	onDocumentMouseDown( event );
+}	
 
 </script>
 
