@@ -1,125 +1,127 @@
+
 <!doctype html>
-<html>
-	<head>
-		<title>learningthree.js boiler plate for three.js</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		
-			
-		<script src="vendor/three.js/Three.js"></script>
-		<script src="vendor/three.js/Detector.js"></script>
-		<!-- https://github.com/mrdoob/stats.js -->
-		<script src="vendor/three.js/Stats.js"></script>
-
-		<script src="vendor/threex/THREEx.screenshot.js"></script>
-		<script src="vendor/threex/THREEx.FullScreen.js"></script>
-		<script src="vendor/threex/THREEx.WindowResize.js"></script>
-		<script src="vendor/threex.dragpancontrols.js"></script>
-
-		<link  href="css/main.css" rel="stylesheet"/>
-	</head>
+<html lang="en">
+<head>
+    <title>Glenn Danzig needs some PBR!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel=stylesheet href="css/base.css"/>
+</head>
 <body>
-	<!-- three.js container -->
-    	<div id="container"></div>
-	<!-- info on screen display -->
-	<div id="info">
-		<div class="top">
-			<a href="http://learningthreejs.com/blog/2011/12/20/boilerplate-for-three-js/" target="_blank">LearningThree.js</a>
-			boiler plate for
-			<a href="https://github.com/mrdoob/three.js/" target="_blank">three.js</a>
-		</div>
-		<div class="bottom" id="inlineDoc" >
-			- <i>p</i> for screenshot
-		</div> 
-	</div> 
 
-	<script type="text/javascript">
-		var stats, scene, renderer;
-		var camera, cameraControl;
+<script src="js/Three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/Stats.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/KeyboardState.js"></script>
+<script src="js/THREEx.FullScreen.js"></script>
+<script src="js/THREEx.WindowResize.js"></script>
 
+</div>
 
-		if( !init() )	animate();
+<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+<script>
 
-		// init the scene
-		function init(){
+// MAIN
 
-			if( Detector.webgl ){
-				renderer = new THREE.WebGLRenderer({
-					antialias		: true,	// to get smoother output
-					preserveDrawingBuffer	: true	// to allow screenshot
-				});
-				renderer.setClearColorHex( 0xBBBBBB, 1 );
-			// uncomment if webgl is required
-			//}else{
-			//	Detector.addGetWebGLMessage();
-			//	return true;
-			}else{
-				renderer	= new THREE.CanvasRenderer();
-			}
-			renderer.setSize( window.innerWidth, window.innerHeight );
-			document.getElementById('container').appendChild(renderer.domElement);
+// standard global variables
+var container, scene, camera, renderer, controls, stats;
+var keyboard = new KeyboardState();
+var clock = new THREE.Clock();
 
-			// add Stats.js - https://github.com/mrdoob/stats.js
-			stats = new Stats();
-			stats.domElement.style.position	= 'absolute';
-			stats.domElement.style.bottom	= '0px';
-			document.body.appendChild( stats.domElement );
+// custom global variables
+var mesh;
 
-		    var world = document.getElementById('world'),
-		        WIDTH = 1200,
-		        HEIGHT = 500,
-		        VIEW_ANGLE = 45,
-		        ASPECT = WIDTH / HEIGHT,
-		        NEAR = 0.1,
-		        FAR = 10000,
+init();
+animate();
 
-		        renderer = new THREE.WebGLRenderer(),
-		        camera = new THREE.Camera(VIEW_ANGLE, ASPECT, NEAR, FAR),
-		        scene = new THREE.Scene(),
-		        texture = THREE.ImageUtils.loadTexture('glenn.jpg', {}, function() {
-    				renderer.render(scene);
-				}),
-		        material = new THREE.MeshBasicMaterial({map: texture}),
-		        // material = new THREE.MeshPhongMaterial({color: 0xCC0000});
-		        geometry = new THREE.PlaneGeometry(100, 100),
-		        mesh = new THREE.Mesh(geometry, material),
-		        pointLight = new THREE.PointLight(0xFFFFFF);
+// FUNCTIONS 		
+function init() 
+{
+	// SCENE
+	scene = new THREE.Scene();
+	// CAMERA
+	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
+	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+	scene.add(camera);
+	camera.position.set(0,150,400);
+	camera.lookAt(scene.position);	
+	// RENDERER
+	if ( Detector.webgl )
+		renderer = new THREE.WebGLRenderer( {antialias:true} );
+	else
+		renderer = new THREE.CanvasRenderer(); 
+	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	container = document.getElementById( 'ThreeJS' );
+	container.appendChild( renderer.domElement );
+	// EVENTS
+	THREEx.WindowResize(renderer, camera);
+	THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
+	// CONTROLS
+	controls = new THREE.OrbitControls( camera, renderer.domElement );
+	// STATS
+	stats = new Stats();
+	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.bottom = '0px';
+	stats.domElement.style.zIndex = 100;
+	container.appendChild( stats.domElement );
+	// LIGHT
+	var light = new THREE.PointLight(0xffffff);
+	light.position.set(100,250,100);
+	scene.add(light);
+	// FLOOR
+	var floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' );
+	floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
+	floorTexture.repeat.set( 10, 10 );
+	var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
+	var floorGeometry = new THREE.PlaneGeometry(1000, 1000, 10, 10);
+	var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+	floor.position.y = -0.5;
+	floor.rotation.x = Math.PI / 2;
+	scene.add(floor);
+	// SKYBOX
+	var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
+	var skyBoxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
+	var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
+	scene.add(skyBox);
+	
+	////////////
+	// CUSTOM //
+	////////////
+	
+	var geometry = new THREE.SphereGeometry( 30, 32, 16 );
+	var material = new THREE.MeshLambertMaterial( { color: 0x000088 } );
+	mesh = new THREE.Mesh( geometry, material );
+	mesh.position.set(0,40,0);
+	scene.add(mesh);
+	
+}
 
-		    camera.position.z = 200;    
-		    renderer.setSize(WIDTH, HEIGHT);
-		    scene.addChild(mesh);
-		    world.appendChild(renderer.domElement);
-		    pointLight.position.x = 50;
-		    pointLight.position.y = 50;
-		    pointLight.position.z = 130;
-		    scene.addLight(pointLight); 
-		    renderer.render(scene, camera);
-		}
+function animate() 
+{
+    requestAnimationFrame( animate );
+	render();		
+	update();
+}
 
-		// animation loop
-		function animate() {
+function update()
+{
+	if ( keyboard.pressed("z") ) 
+	{	  
+		// do something
+	}
+	
+	controls.update();
+	stats.update();
+}
 
-			// loop on request animation loop
-			// - it has to be at the begining of the function
-			// - see details at http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
-			requestAnimationFrame( animate );
+function render() 
+{
+	renderer.render( scene, camera );
+}
 
-			// do the render
-			render();
+</script>
 
-			// update stats
-			stats.update();
-		}
-
-		// render the scene
-		function render() {
-
-			// update camera controls
-			cameraControls.update();
-
-			// actually render the scene
-			renderer.render( scene, camera );
-		}
-	</script>
 </body>
 </html>
