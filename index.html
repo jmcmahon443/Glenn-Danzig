@@ -23,7 +23,7 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, stats, projector;
+var container, scene, camera, renderer, stats, projector, spawnPlane;
 var keyboard = new KeyboardState();
 var clock = new THREE.Clock();
 
@@ -75,7 +75,7 @@ function init()
 	scene.add(glenn);
 	// PBR SPAWN PLANE
 	var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
-	var spawnPlane = new THREE.MeshBasicMaterial(spawnPlaneGeometry);
+	spawnPlane = new THREE.MeshBasicMaterial(spawnPlaneGeometry);
 	scene.add(spawnPlane);
 	// SKYBOX
 	var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
