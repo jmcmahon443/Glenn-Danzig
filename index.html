@@ -22,11 +22,8 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, stats, projector, glenn, raycaster, mouse;
+var container, scene, camera, renderer, stats, projector, glenn, raycaster, mouse, PBR, skyBox;
 var clock = new THREE.Clock();
-
-// custom global variables
-var mesh;
 
 init();
 animate();
@@ -72,7 +69,7 @@ function init()
 	// SKYBOX
 	var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
 	var skyBoxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
-	var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
+	skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
 	scene.add(skyBox);
 	// PBR SPAWN PLANE
 	//var spawnPlaneGeometry = new THREE.PlaneGeometry(500, 500, 10, 10);
@@ -121,7 +118,7 @@ function onDocumentMouseDown( event ) {
 
 	raycaster.setFromCamera( mouse, camera );
 
-	var intersects = raycaster.intersectObjects( [glenn] ); //spawnPlane later
+	var intersects = raycaster.intersectObjects( [glenn, skyBox ] ); //spawnPlane later
 
 	if ( intersects.length > 0 ) {
 
