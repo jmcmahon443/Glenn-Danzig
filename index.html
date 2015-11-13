@@ -72,9 +72,9 @@ function init()
 	scene.add(light);
 	// GLENN
 	var glennTexture = new THREE.ImageUtils.loadTexture( 'images/glenn.jpg' );
-	var glennMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
+	var glennMaterial = new THREE.MeshBasicMaterial( { map: glennTexture, side: THREE.DoubleSide } );
 	var glennGeometry = new THREE.PlaneGeometry(100, 100, 10, 10);
-	var glenn = new THREE.Mesh(floorGeometry, floorMaterial);
+	var glenn = new THREE.Mesh(glennGeometry, glennMaterial);
 	glenn.position.set(0,-500,0);
 	scene.add(glenn);
 	// SKYBOX
