@@ -12,7 +12,6 @@
 <script src="js/three.min.js"></script>
 <script src="js/Detector.js"></script>
 <script src="js/Stats.js"></script>
-<script src="js/KeyboardState.js"></script>
 <script src="js/Projector.js"></script>
 <script src="js/CanvasRenderer.js"></script>
 
@@ -54,9 +53,6 @@ function init()
 	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	container = document.getElementById( 'ThreeJS' );
 	container.appendChild( renderer.domElement );
-	// EVENTS
-	THREEx.WindowResize(renderer, camera);
-	THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
 	// STATS
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
@@ -110,13 +106,6 @@ function animate()
 
 function update()
 {
-	// if ( keyboard.pressed("z") ) 
-	// {	  
-	// 	scene.add(PBR);
-
-	// 	console.log("PBR!");
-	// }
-
 	stats.update();
 }
 
