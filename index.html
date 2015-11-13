@@ -65,33 +65,35 @@
 			stats.domElement.style.bottom	= '0px';
 			document.body.appendChild( stats.domElement );
 
-			// create a scene
-			scene = new THREE.Scene();
+		    var world = document.getElementById('world'),
+		        WIDTH = 1200,
+		        HEIGHT = 500,
+		        VIEW_ANGLE = 45,
+		        ASPECT = WIDTH / HEIGHT,
+		        NEAR = 0.1,
+		        FAR = 10000,
 
-			// put a camera in the scene
-			camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 10000 );
-			camera.position.set(0, 0, 5);
-			scene.add(camera);
+		        renderer = new THREE.WebGLRenderer(),
+		        camera = new THREE.Camera(VIEW_ANGLE, ASPECT, NEAR, FAR),
+		        scene = new THREE.Scene(),
+		        texture = THREE.ImageUtils.loadTexture('glenn.jpg', {}, function() {
+    				renderer.render(scene);
+				}),
+		        material = new THREE.MeshBasicMaterial({map: texture}),
+		        // material = new THREE.MeshPhongMaterial({color: 0xCC0000});
+		        geometry = new THREE.PlaneGeometry(100, 100),
+		        mesh = new THREE.Mesh(geometry, material),
+		        pointLight = new THREE.PointLight(0xFFFFFF);
 
-			// create a camera contol
-			cameraControls	= new THREEx.DragPanControls(camera)
-
-			// transparently support window resize
-			THREEx.WindowResize.bind(renderer, camera);
-			// allow 'p' to make screenshot
-			THREEx.Screenshot.bindKey(renderer);
-			// allow 'f' to go fullscreen where this feature is supported
-			if( THREEx.FullScreen.available() ){
-				THREEx.FullScreen.bindKey();		
-				document.getElementById('inlineDoc').innerHTML	+= "- <i>f</i> for fullscreen";
-			}
-
-			// here you add your objects
-			// - you will most likely replace this part by your own
-			var geometry	= new THREE.TorusGeometry( 1, 0.42 );
-			var material	= new THREE.MeshNormalMaterial();
-			var mesh	= new THREE.Mesh( geometry, material );
-			scene.add( mesh );
+		    camera.position.z = 200;    
+		    renderer.setSize(WIDTH, HEIGHT);
+		    scene.addChild(mesh);
+		    world.appendChild(renderer.domElement);
+		    pointLight.position.x = 50;
+		    pointLight.position.y = 50;
+		    pointLight.position.z = 130;
+		    scene.addLight(pointLight); 
+		    renderer.render(scene, camera);
 		}
 
 		// animation loop
