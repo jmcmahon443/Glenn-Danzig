@@ -13,6 +13,8 @@
 <script src="js/Detector.js"></script>
 <script src="js/Stats.js"></script>
 <script src="js/KeyboardState.js"></script>
+<script src="js/Projector.js"></script>
+<script src="js/CanvasRenderer.js"></script>
 <script src="js/THREEx.FullScreen.js"></script>
 <script src="js/THREEx.WindowResize.js"></script>
 
@@ -134,12 +136,7 @@ function onDocumentMouseDown( event ) {
 
 	if ( intersects.length > 0 ) {
 
-		intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
-
-		var particle = new THREE.Sprite( particleMaterial );
-		particle.position.copy( intersects[ 0 ].point );
-		particle.scale.x = particle.scale.y = 16;
-		scene.add( particle );
+		console.log("Hit @ " + toString( intersects[0].point ) );
 
 	}
 
