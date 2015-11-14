@@ -96,7 +96,7 @@ function init()
 function animate() 
 {
 	var time = clock.getElapsedTime();
-	glenn.position.set(40*Math.cos( time * Math.PI / 360 ), 40*Math.sin( time * Math.PI / 360 ), 0);
+	glenn.position.set(400*Math.cos( time * Math.PI / 360 ), 400*Math.sin( time * Math.PI / 360 ), 0);
     requestAnimationFrame( animate );
 	render();
 	update();
