@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -96,6 +95,9 @@ function init()
 
 function animate() 
 {
+	var time = clock.getElapsedTime();
+	glenn.position.x = 40*cos(time);
+	glenn.position.y = 40*sin(time);
     requestAnimationFrame( animate );
 	render();
 	update();
@@ -104,9 +106,6 @@ function animate()
 function update()
 {
 	stats.update();
-	time = clock.getElapsedTime();
-	glenn.position.x = 40*cos(time);
-	glenn.position.y = 40*sin(time);
 }
 
 function render() 
