@@ -75,16 +75,10 @@ function init()
 	// PBR SPAWN STUFF
 	raycaster = new THREE.Raycaster();
 	mouse = new THREE.Vector2();
-	
+
 	////////////
 	// CUSTOM //
 	////////////
-	
-	var PBRGeometry = new THREE.SphereGeometry( 30, 32, 16 );
-	var PBRMaterial = new THREE.MeshLambertMaterial( { color: 0x000088 } );
-	var PBR = new THREE.Mesh( PBRGeometry, PBRMaterial );
-
-	PBRs = [ PBR ];
 
 	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
@@ -124,6 +118,10 @@ function onDocumentMouseDown( event ) {
 
 	if ( intersects.length > 0 ) {
 		console.log(intersects[0].point);
+		var PBRGeometry = new THREE.SphereGeometry( 30, 32, 16 );
+		var PBRMaterial = new THREE.MeshLambertMaterial( { color: 0x000088 } );
+		var PBR = new THREE.Mesh( PBRGeometry, PBRMaterial );
+		scene.add(PBR);
 	}
 }
 
