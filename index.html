@@ -117,10 +117,10 @@ function onDocumentMouseDown( event ) {
 	var intersects = raycaster.intersectObjects( [spawnPlane] );
 
 	if ( intersects.length > 0 ) {
-		var PBRGeometry = new THREE.SphereGeometry( 30, 32, 16 );
+		var PBRGeometry = new THREE.SphereGeometry( 20 );
 		var PBRMaterial = new THREE.MeshLambertMaterial( { color: 0x000088 } );
 		var PBR = new THREE.Mesh( PBRGeometry, PBRMaterial );
-		PBR.position.set(intersects[0].point.x,intersects[0].point.y,intersects[0].point.z);
+		PBR.position.set(intersects[0].point.x,intersects[0].point.y,0);
 		scene.add(PBR);
 	}
 }
