@@ -11,7 +11,6 @@
 <script src="js/three.min.js"></script>
 <script src="js/Detector.js"></script>
 <script src="js/Stats.js"></script>
-<script src="js/Projector.js"></script>
 <script src="js/CanvasRenderer.js"></script>
 
 <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
@@ -21,7 +20,7 @@
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, stats, projector, glenn, raycaster, mouse, spawnPlane;
+var container, scene, camera, renderer, stats, glenn, raycaster, mouse, spawnPlane;
 var clock = new THREE.Clock();
 var PBRs = [];
 
@@ -74,7 +73,6 @@ function init()
 	spawnPlane.position.set(0,0,400);
 	scene.add(spawnPlane);
 	// PBR SPAWN STUFF
-	projector = new THREE.Projector();
 	raycaster = new THREE.Raycaster();
 	mouse = new THREE.Vector2();
 	
@@ -100,7 +98,6 @@ function animate()
 	var time = clock.getElapsedTime();
 	glenn.position.set(100*Math.cos( 10 * time * Math.PI / 360 ), 100*Math.sin( 10 * time * Math.PI / 360 ), 0);
     requestAnimationFrame( animate );
-    console.log(time);
 	render();
 	update();
 }
