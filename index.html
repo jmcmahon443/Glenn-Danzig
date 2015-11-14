@@ -31,7 +31,6 @@ animate();
 // FUNCTIONS 		
 function init() 
 {
-	clock.autoStart();
 	// SCENE
 	scene = new THREE.Scene();
 	// CAMERA
@@ -92,6 +91,8 @@ function init()
 	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
 	window.addEventListener( 'resize', onWindowResize, false );
+
+	animate();
 }
 
 function animate() 
