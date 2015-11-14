@@ -96,8 +96,8 @@ function init()
 function animate() 
 {
 	var time = clock.getElapsedTime();
-	glenn.position.x = 40*cos(time);
-	glenn.position.y = 40*sin(time);
+	glenn.position.x = Math.cos( time * Math.PI / 360 );
+	glenn.position.y = Math.sin( time * Math.PI / 360 );
     requestAnimationFrame( animate );
 	render();
 	update();
