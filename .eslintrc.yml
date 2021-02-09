@@ -1,0 +1,18 @@
+# extends:
+#   - "airbnb"
+#   - "prettier"
+#   - "prettier/react"
+plugins:
+  - "react"
+  - "prettier"
+env:
+  es6: true
+  browser: true
+globals:
+  AFRAME: true
+  it: true
+parser: "babel-eslint"
+rules:
+  strict: 0
+  react/jsx-filename-extension: 0
+  react/forbid-prop-types: 0
