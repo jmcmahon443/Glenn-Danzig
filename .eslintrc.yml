@@ -1,7 +1,7 @@
-extends:
-  - "airbnb"
-  - "prettier"
-  - "prettier/react"
+# extends:
+#   - "airbnb"
+#   - "prettier"
+#   - "prettier/react"
 plugins:
   - "react"
   - "prettier"
