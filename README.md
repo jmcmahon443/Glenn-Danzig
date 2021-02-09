@@ -1,4 +1,5 @@
 # Glenn Danzig
+Glenn Danzig needs some PBR.
 Glenn Danzig can be kind of an insensitive asshole sometimes, so we crush our PBR cans and throw them at him on stage when he is.
 
 ## Requirements
