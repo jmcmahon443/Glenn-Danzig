@@ -1,0 +1,58 @@
+{
+  "name": "glenn-danzig",
+  "version": "0.0.0-development",
+  "description": "Glenn Danzig needs some PBR.",
+  "repository": {
+    "url": "https:git@github.com:jmcmahon443/Glenn-Danzig.git",
+    "type": "git"
+  },
+  "scripts": {
+    "lint": "eslint --ext .jsx,.js src",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
+    "precommit": "lint-staged && yarn lint",
+    "prettier": "prettier --single-quote --write \"src/**/*.{js,jsx}\""
+  },
+  "contributors": [
+    {
+      "name": "Patrick Coffey",
+      "email": "patrickcoffey48@gmail.com"
+    }
+  ],
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "license": "GPL-3.0",
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "homepage": "http://jmcmahon443.github.io/Glenn-Danzig/",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-config-prettier": "^2.10.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-prettier": "^2.7.0",
+    "eslint-plugin-react": "^7.22.0",
+    "gh-pages": "^1.2.0",
+    "husky": "^0.14.3",
+    "last-release-git": "^0.0.3",
+    "lint-staged": "^4.3.0",
+    "prettier": "^1.19.1",
+    "react-scripts": "^1.1.5"
+  },
+  "dependencies": {
+    "aframe": "^0.6.1",
+    "aframe-react": "^4.4.0",
+    "react": "^15.7.0",
+    "react-dom": "^15.7.0"
+  }
+}
