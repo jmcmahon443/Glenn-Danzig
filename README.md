@@ -1,5 +1,5 @@
-# A-Frame Boilerplate
-This repository contains a boilerplate A-Frame project. It contains example implementations of [A-Frame](https://aframe.io/), [React](https://facebook.github.io/react/), and an [A-Frame-React](https://github.com/ngokevin/aframe-react) library, which exposes A-Frame components as a React component.
+# Glenn Danzig
+Glenn Danzig can be kind of an insensitive asshole sometimes, so we crush our PBR cans and throw them at him on stage when he is.
 
 ## Requirements
  * Node.js (see .nvmrc for correct version).
