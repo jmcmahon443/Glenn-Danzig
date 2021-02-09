@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAKA,MACE,iBAAkB,CAClB,UAAW,CACX,WACF","file":"main.66b80149.chunk.css","sourcesContent":["/**\r\n * @file index.css\r\n * CSS file for the Aframe Boilerplate app.\r\n */\r\n\r\n#root {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n"]}
