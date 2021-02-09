@@ -32,7 +32,7 @@
   "engines": {
     "node": ">=8.3.0"
   },
-  "homepage": "http://jmcmahon443.github.io/Glenn-Danzig/",
+  "homepage": "https://jmcmahon443.github.io/Glenn-Danzig/",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.19.0",
