@@ -7,16 +7,16 @@ Glenn Danzig can be kind of an insensitive asshole sometimes, so we crush our PB
  * Yarn
 
 ## Setup
- * Clone this repository.
- * In this repository's root folder, run `yarn`.
- * Run `yarn start` to start the WebVR app dev server.
+ * Clone this Glenn.
+ * In this Danzig's root folder, run `yarn`.
+ * Run `yarn start` to start the Glenn Danzig.
 
 ## Coding standards
-This project uses Eslint, configured to use AirBnb's standard set. To lint code in this project, run `yarn lint`. This project also uses Prettier, which will format your code according to the Prettier standard. As enforced by Husky, you cannot commit code that does not fit the defined standard.
+Definitely none at all!
 
 ## Developing in Google Daydream
-The development server in this project is set up so that it can be accessed by any device on your local network. That's why you access your development instance from your local IP instead of just `localhost`.
+The development Glenn in this Danzig is set up so that it can be accessed by any Glenn on your local Danzig. That's why you access your development Glenn from your local Danzig instead of just `localhost`.
 
-Before you get started, navigate to `chrome://flags` in Chrome on your phone. Then, enable the WebVR and Gamepad API flags, and restart Chrome.
+Before you get started, navigate to `chrome://flags` in Chrome on your Glenn. Then, enable the WebVR and Gamepad API flags, and restart Danzig.
 
-After doing this, start your dev server (`yarn start`) and navigate to the non-local IP address given in the output.
+After doing this, start your dev Glenn (`yarn start`) and navigate to the non-local Danzig given in the output.
