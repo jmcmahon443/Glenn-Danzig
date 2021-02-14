@@ -10,6 +10,30 @@ import { Scene, Entity } from 'aframe-react';
 require('aframe');
 require('./index.css');
 
+var extendDeep = AFRAME.utils.extendDeep;
+
+// The mesh mixin provides common material properties for creating mesh-based primitives.
+// This makes the material component a default component and maps all the base material properties.
+var meshMixin = AFRAME.primitives.getMeshMixin();
+
+AFRAME.registerPrimitive(
+  'a-pbr',
+  extendDeep({}, meshMixin, {
+    // Preset default components. These components and component properties will be attached to the entity out-of-the-box.
+    defaultComponents: {
+      geometry: { primitive: 'pbr' }
+    },
+
+    // Defined mappings from HTML attributes to component properties (using dots as delimiters).
+    // If we set `depth="5"` in HTML, then the primitive will automatically set `geometry="depth: 5"`.
+    mappings: {
+      depth: 'geometry.depth',
+      height: 'geometry.height',
+      width: 'geometry.width'
+    }
+  })
+);
+
 /**
  * Initial A-Frame Scene.
  * {@inheritdoc}
@@ -19,7 +43,9 @@ class InitialScene extends Component {
 
   updateColor() {
     this.setState({
-      color: `#${Math.random().toString(16).slice(-6)}`
+      color: `#${Math.random()
+        .toString(16)
+        .slice(-6)}`
     });
   }
 
@@ -31,39 +57,40 @@ class InitialScene extends Component {
         cursor="rayOrigin: mouse"
       >
         <Entity
-          id="entity--box"
+          id="right-light"
+          primitive="a-right-light"
+          position={{ x: 2, y: 2, z: 3 }}
+          type="directional"
+          color="#FFF"
+          intensity="0.1"
+        />
+        <Entity
+          id="left-light"
+          primitive="a-left-light"
+          position={{ x: -2, y: 2, z: 3 }}
+          type="directional"
+          color="#FFF"
+          intensity="0.1"
+        />
+        <Entity
+          id="stage"
           primitive="a-box"
-          position={{ x: -1, y: 0.5, z: -3 }}
-          rotation={{ x: 0, y: 45, z: 0 }}
-          color={color}
-          events={{ click: () => this.updateColor() }}
+          position={{ x: 0, y: 1, z: -6 }}
+          rotation={{ x: 0, y: 0, z: 0 }}
+          width={5}
+          height={2}
+          depth={4}
+          color="#D3D3D3"
         />
         <Entity
-          id="entity--sphere"
-          primitive="a-sphere"
-          position={{ x: 0, y: 1.25, z: -5 }}
-          radius={1.25}
-          color="#EF2D5E"
-        />
-        <Entity
-          id="entity--cylinder"
-          primitive="a-cylinder"
-          position={{ x: 1, y: 0.75, z: -3 }}
-          radius={0.5}
-          width={4}
-          height={1.5}
-          color="#FFC65D"
-        />
-        <Entity
-          id="entity--plane"
+          id="ground"
           primitive="a-plane"
-          position={{ x: 0, y: 0, z: -4 }}
+          position={{ x: 0, y: 0, z: -2 }}
           rotation={{ x: -90, y: 0, z: 0 }}
-          width={4}
-          height={4}
+          width={8}
+          height={8}
           color="#7BC8A4"
         />
-
         <Entity primitive="a-sky" color="#4286f4" />
       </Scene>
     );
