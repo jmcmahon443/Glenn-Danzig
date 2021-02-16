@@ -10,8 +10,8 @@ Glenn Danzig can be kind of an insensitive asshole sometimes, so we crush our PB
  * Clone this Glenn Danzig repo.
  * Run `yarn` to build Glenn Danzig locally.
  * Run `yarn start` to run Glenn Danzig and open a localhost brower to play in. You can also access Glenn Danzig via other devices on your local network.
-   * Local:            http://localhost:3000/Glenn-Danzig
-   * On Your Network:  http://10.0.1.39:3000/Glenn-Danzig
+   * localhost: http://localhost:3000/Glenn-Danzig
+   * LAN: http://10.0.1.39:3000/Glenn-Danzig
  * Run `yarn run deploy` to deploy to the web via your linked static Github page or personal website.
 
 ## Coding standards
