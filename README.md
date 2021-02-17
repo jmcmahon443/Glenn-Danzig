@@ -1,5 +1,5 @@
 # Glenn Danzig
-Glenn Danzig needs some PBR.
+Glenn Danzig needs some PBR.  
 Glenn Danzig can be kind of an insensitive asshole sometimes, so we crush our PBR cans and throw them at him on stage when he is.
 
 ## Requirements
@@ -7,16 +7,12 @@ Glenn Danzig can be kind of an insensitive asshole sometimes, so we crush our PB
  * Yarn
 
 ## Setup
- * Clone this Glenn.
- * In this Danzig's root folder, run `yarn`.
- * Run `yarn start` to start the Glenn Danzig.
+ * Clone this Glenn Danzig repo.
+ * Run `yarn` to build Glenn Danzig locally.
+ * Run `yarn start` to run Glenn Danzig and open a localhost brower to play in. You can also access Glenn Danzig via other devices on your local network.
+   * localhost: http://localhost:3000/Glenn-Danzig
+   * LAN: http://10.0.1.39:3000/Glenn-Danzig
+ * Run `yarn run deploy` to deploy to the web via your linked static Github page or personal website.
 
 ## Coding standards
 Definitely none at all!
-
-## Developing in Google Daydream
-The development Glenn in this Danzig is set up so that it can be accessed by any Glenn on your local Danzig. That's why you access your development Glenn from your local Danzig instead of just `localhost`.
-
-Before you get started, navigate to `chrome://flags` in Chrome on your Glenn. Then, enable the WebVR and Gamepad API flags, and restart Danzig.
-
-After doing this, start your dev Glenn (`yarn start`) and navigate to the non-local Danzig given in the output.
