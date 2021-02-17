@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Glenn-Danzig/static/css/main.66b80149.chunk.css",
-    "main.js": "/Glenn-Danzig/static/js/main.873bb5f5.chunk.js",
-    "main.js.map": "/Glenn-Danzig/static/js/main.873bb5f5.chunk.js.map",
+    "main.js": "/Glenn-Danzig/static/js/main.9484d839.chunk.js",
+    "main.js.map": "/Glenn-Danzig/static/js/main.9484d839.chunk.js.map",
     "runtime-main.js": "/Glenn-Danzig/static/js/runtime-main.21534a3b.js",
     "runtime-main.js.map": "/Glenn-Danzig/static/js/runtime-main.21534a3b.js.map",
     "static/js/2.c787229f.chunk.js": "/Glenn-Danzig/static/js/2.c787229f.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.21534a3b.js",
     "static/js/2.c787229f.chunk.js",
     "static/css/main.66b80149.chunk.css",
-    "static/js/main.873bb5f5.chunk.js"
+    "static/js/main.9484d839.chunk.js"
   ]
 }

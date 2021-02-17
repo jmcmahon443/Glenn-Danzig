@@ -35,6 +35,7 @@
   "homepage": "https://jmcmahon443.github.io/Glenn-Danzig/",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "debug": "^4.2.0",
     "eslint": "^7.19.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "6.4.1",
@@ -45,7 +46,8 @@
     "last-release-git": "^0.0.3",
     "lint-staged": "^4.3.0",
     "prettier": "^1.19.1",
-    "react-scripts": "^4.0.2"
+    "react-scripts": "^4.0.2",
+    "typescript": "^4.1.5"
   },
   "dependencies": {
     "aframe": "^1.2.0",

@@ -10,6 +10,15 @@ import { Scene, Entity } from 'aframe-react';
 require('aframe');
 require('./index.css');
 
+// document.createElement("BallA");
+// set attributes
+// open to the DOM
+
+// generate a cylinder OnClick()
+
+// when user clicks on Root, createElement(cylinder)
+// set att
+
 var extendDeep = AFRAME.utils.extendDeep;
 
 // The mesh mixin provides common material properties for creating mesh-based primitives.
